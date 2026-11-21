@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kapan Harus ke Dokter: Saluran Kemih dan Reproduksi</title>
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#f4f8f9; --surface:#ffffff; --ink:#12313b; --muted:#53707a; --line:#d3e1e5;
+  --brand:#0f5c6e; --brand-ink:#ffffff;
+  --red:#b3261e; --red-bg:#fdeceb;
+  --amber:#8a5200; --amber-bg:#fff3dc;
+  --green:#1f6b43; --green-bg:#e6f4ec;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1b20; --surface:#16272e; --ink:#e6f0f3; --muted:#9db6be; --line:#2a4049;
+    --brand:#5cc3d8; --brand-ink:#0e1b20;
+    --red:#ff8a80; --red-bg:#3a1b19;
+    --amber:#ffc266; --amber-bg:#3a2b10;
+    --green:#7fd6a2; --green-bg:#17301f;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1b20; --surface:#16272e; --ink:#e6f0f3; --muted:#9db6be; --line:#2a4049;
+  --brand:#5cc3d8; --brand-ink:#0e1b20;
+  --red:#ff8a80; --red-bg:#3a1b19;
+  --amber:#ffc266; --amber-bg:#3a2b10;
+  --green:#7fd6a2; --green-bg:#17301f;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:680px;margin:0 auto;padding:28px 18px 56px}
+h1{font-size:1.7rem;line-height:1.2;margin:0 0 8px;letter-spacing:-.01em}
+.lead{color:var(--muted);margin:0 0 24px;max-width:56ch}
+h2{font-size:1.05rem;margin:26px 0 10px}
+.group-note{color:var(--muted);font-size:.9rem;margin:-4px 0 10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:inherit;text-align:left;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;cursor:pointer;min-height:44px}
+.chip:focus-visible,.reset:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.chip[aria-pressed="true"]{border-color:var(--brand);background:var(--brand);color:var(--brand-ink)}
+.result{margin-top:30px;border-radius:16px;padding:20px;border:2px solid var(--line);background:var(--surface)}
+.result.red{background:var(--red-bg);border-color:var(--red)}
+.result.amber{background:var(--amber-bg);border-color:var(--amber)}
+.result.green{background:var(--green-bg);border-color:var(--green)}
+.result h3{margin:0 0 6px;font-size:1.25rem}
+.result.red h3{color:var(--red)} .result.amber h3{color:var(--amber)} .result.green h3{color:var(--green)}
+.result p{margin:6px 0}
+.why{margin:14px 0 0;padding:0;list-style:none}
+.why li{border-top:1px solid var(--line);padding:10px 0}
+.why b{display:block}
+.why span{color:var(--muted);font-size:.93rem}
+.reset{font:inherit;background:none;border:1.5px solid var(--line);color:var(--ink);border-radius:10px;padding:8px 14px;margin-top:14px;cursor:pointer;min-height:44px}
+.empty{color:var(--muted);margin:30px 0 0;padding:18px;border:1.5px dashed var(--line);border-radius:14px}
+.disclaimer{margin-top:34px;font-size:.88rem;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin:0 0 22px;padding-bottom:4px}
+.tab{font:inherit;white-space:nowrap;background:none;border:1.5px solid var(--line);color:var(--ink);border-radius:999px;padding:8px 14px;cursor:pointer;min-height:44px}
+.tab[aria-selected="true"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.tab:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.panel{display:none}.panel.on{display:block}
+.card{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:16px;margin:0 0 14px}
+label{display:block;font-size:.93rem;margin:10px 0 4px}
+input,select{font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;width:100%;min-height:44px}
+.btn{font:inherit;background:var(--brand);color:var(--brand-ink);border:0;border-radius:10px;padding:10px 18px;cursor:pointer;min-height:44px;margin:12px 8px 0 0}
+.btn.alt{background:none;color:var(--ink);border:1.5px solid var(--line)}
+.bars{display:flex;align-items:flex-end;gap:8px;height:110px;margin:8px 0 4px}
+.bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;font-size:.75rem;color:var(--muted)}
+.bar i{display:block;width:100%;background:var(--brand);border-radius:6px 6px 0 0;min-height:2px}
+.prog{height:16px;background:var(--line);border-radius:99px;overflow:hidden;margin:10px 0}
+.prog i{display:block;height:100%;background:var(--brand);width:0}
+.banner{background:var(--amber-bg);color:var(--amber);border:1.5px solid var(--amber);border-radius:12px;padding:12px 14px;margin:0 0 14px}
+details{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 8px}
+summary{cursor:pointer;font-weight:600}
+details p{margin:8px 0 0;color:var(--muted)}
+.big{font-size:2rem;font-weight:700;margin:0}
+.logrow{display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding:8px 0;font-size:.93rem}
+.logrow button{font:inherit;background:none;border:0;color:var(--red);cursor:pointer;min-height:44px}
+</style>
+</head>
+<body>
+<main>
+  <nav class="tabs" id="tabs"></nav>
+<div class="panel on" id="p-dokter">
+  <h1>Kapan harus ke dokter?</h1>
+  <p class="lead">Pilih keluhan yang kamu rasakan sekarang. Kamu bisa memilih lebih dari satu, lalu lihat seberapa cepat sebaiknya diperiksa.</p>
+
+  <h2>Keluhan saat BAK</h2>
+  <div class="chips" id="g-bak"></div>
+  <h2>Nyeri atau tanda lain</h2>
+  <div class="chips" id="g-nyeri"></div>
+  <h2>Organ reproduksi</h2>
+  <div class="chips" id="g-repro"></div>
+  <h2>Keluhan ringan</h2>
+  <div class="chips" id="g-ringan"></div>
+
+  <div id="out" aria-live="polite"></div>
+</div>
+
+<div class="panel" id="p-ipss">
+  <h1>Cek gejala prostat (IPSS)</h1>
+  <p class="lead">Jawab 7 pertanyaan tentang kondisimu selama sebulan terakhir. Skor ini umum dipakai pada pria dengan keluhan BAK, dan hanya gambaran awal.</p>
+  <div id="ipss-q"></div>
+  <button class="btn" type="button" id="ipss-go">Hitung skor</button>
+  <div id="ipss-out" aria-live="polite"></div>
+</div>
+
+<div class="panel" id="p-harian">
+  <h1>Buku harian berkemih</h1>
+  <p class="lead">Catat sekali sehari. Data tersimpan di peramban HP atau komputer ini saja, dan bisa kamu tunjukkan ke dokter.</p>
+  <div class="card">
+    <label for="d-minum">Total minum hari ini (ml)</label>
+    <input id="d-minum" type="number" min="0" inputmode="numeric" placeholder="contoh: 1800">
+    <label for="d-bak">Berapa kali BAK hari ini</label>
+    <input id="d-bak" type="number" min="0" inputmode="numeric" placeholder="contoh: 6">
+    <label for="d-note">Catatan keluhan (opsional)</label>
+    <input id="d-note" type="text" placeholder="contoh: perih saat BAK sore hari">
+    <button class="btn" type="button" id="d-save">Simpan catatan hari ini</button>
+    <p id="d-msg" role="status"></p>
+  </div>
+  <div class="card" id="d-chart"></div>
+  <div class="card" id="d-log"></div>
+</div>
+
+<div class="panel" id="p-air">
+  <h1>Minum air hari ini</h1>
+  <p class="lead">Cairan yang cukup membantu mencegah ISK dan batu saluran kemih. Satu gelas dihitung 250 ml.</p>
+  <div id="w-banner"></div>
+  <div class="card">
+    <p class="big" id="w-num">0 ml</p>
+    <div class="prog"><i id="w-bar"></i></div>
+    <p id="w-txt"></p>
+    <button class="btn" type="button" id="w-add">Tambah 1 gelas</button>
+    <button class="btn alt" type="button" id="w-sub">Kurangi 1 gelas</button>
+    <label for="w-target">Target harian (ml)</label>
+    <input id="w-target" type="number" min="500" step="250" inputmode="numeric">
+    <label for="w-int">Pengingat selama halaman ini terbuka</label>
+    <select id="w-int"><option value="0">Mati</option><option value="30">Tiap 30 menit</option><option value="60">Tiap 1 jam</option><option value="90">Tiap 1,5 jam</option></select>
+  </div>
+  <p class="disclaimer" style="border:0;margin-top:0">Target 2.000 ml hanyalah patokan umum. Jika kamu punya penyakit jantung atau ginjal, atau dokter membatasi cairanmu, ikuti anjuran dokter.</p>
+</div>
+
+<div class="panel" id="p-belajar">
+  <h1>Pelajari</h1>
+  <p class="lead">Ketuk judul untuk membuka penjelasannya.</p>
+  <h2>Kondisi yang umum</h2>
+  <div id="edu"></div>
+  <h2>Mitos atau fakta</h2>
+  <div id="myth"></div>
+</div>
+
+  <p class="disclaimer">Panduan ini hanya untuk edukasi dan tidak menggantikan pemeriksaan dokter. Jika ragu atau keluhan terasa berat, langsung datang ke fasilitas kesehatan terdekat.</p>
+</main>
+
+<script>
+var LEVELS = {
+  red:   {rank:3, title:"Segera ke IGD", text:"Keluhan ini bisa berbahaya jika ditunda. Datang ke IGD rumah sakit terdekat sekarang, jangan menunggu besok."},
+  amber: {rank:2, title:"Periksa dalam 1 sampai 3 hari", text:"Buat janji dengan dokter umum atau dokter spesialis urologi (atau kandungan untuk wanita) dalam beberapa hari ke depan. Jika memburuk, naikkan menjadi segera ke IGD."},
+  green: {rank:1, title:"Boleh dipantau, tetap kontrol rutin", text:"Biasanya tidak darurat. Catat keluhanmu, cukup minum air, dan periksakan jika berlangsung lebih dari 2 minggu atau mulai mengganggu."}
+};
+
+var ITEMS = [
+  {g:"bak", id:"retensi", t:"Tidak bisa BAK sama sekali", l:"red", w:"Retensi urine bisa merusak kandung kemih dan ginjal bila tidak segera dibantu, biasanya dengan kateter."},
+  {g:"bak", id:"darahgumpal", t:"Kencing berdarah dengan gumpalan", l:"red", w:"Gumpalan darah bisa menyumbat saluran kemih dan perlu penanganan cepat."},
+  {g:"bak", id:"darah", t:"Kencing berdarah (tanpa gumpalan)", l:"amber", w:"Kencing berdarah tidak boleh diabaikan walau tidak nyeri, karena bisa disebabkan batu, infeksi, atau penyebab lain yang perlu dicari. Jika disertai nyeri hebat atau sulit BAK, ke IGD."},
+  {g:"bak", id:"anyang", t:"Perih atau panas saat BAK, sering BAK sedikit-sedikit", l:"amber", w:"Gejala khas infeksi saluran kemih (ISK). Perlu pemeriksaan urine dan terapi yang tepat. Jangan membeli antibiotik tanpa resep."},
+  {g:"bak", id:"nanah", t:"Keluar nanah atau cairan dari kemaluan", l:"amber", w:"Bisa menandakan infeksi menular seksual atau infeksi lain yang perlu diperiksa dan diobati, juga untuk pasangan."},
+  {g:"nyeri", id:"kolik", t:"Nyeri pinggang hebat hingga muntah", l:"red", w:"Nyeri seperti ini sering akibat batu saluran kemih yang menyumbat. Jika tidak tertahankan atau disertai muntah terus, perlu IGD."},
+  {g:"nyeri", id:"demampinggang", t:"Nyeri pinggang disertai demam menggigil", l:"red", w:"Bisa berarti infeksi sudah mencapai ginjal (pielonefritis), terutama jika ada sumbatan. Ini perlu penanganan segera."},
+  {g:"nyeri", id:"demamisk", t:"Demam bersama keluhan BAK", l:"amber", w:"Infeksi saluran kemih dengan demam perlu diperiksa lebih cepat karena bisa naik ke ginjal."},
+  {g:"nyeri", id:"pinggangulang", t:"Nyeri pinggang hilang timbul", l:"amber", w:"Bisa akibat batu ginjal kecil atau penyebab lain. Pemeriksaan urine dan USG membantu memastikan."},
+  {g:"repro", id:"torsio", t:"Nyeri testis mendadak dan hebat", l:"red", w:"Dicurigai torsio testis (testis terpelintir). Testis bisa rusak permanen jika tidak ditangani dalam hitungan jam."},
+  {g:"repro", id:"priapism", t:"Ereksi menyakitkan lebih dari 4 jam", l:"red", w:"Priapismus adalah kedaruratan dan bisa merusak jaringan penis bila dibiarkan."},
+  {g:"repro", id:"benjolan", t:"Ada benjolan di testis", l:"amber", w:"Benjolan testis perlu diperiksa dokter, walau sering tidak berbahaya, karena sebagian bisa berupa tumor yang lebih baik ditangani dini."},
+  {g:"ringan", id:"nokturia", t:"Bangun BAK malam 1 sampai 2 kali", l:"green", w:"Umum terjadi, terutama bertambahnya usia. Kurangi minum berlebihan menjelang tidur. Periksa bila makin sering atau aliran melemah."},
+  {g:"ringan", id:"bocor", t:"Bocor sedikit saat batuk atau tertawa", l:"green", w:"Bisa terkait otot dasar panggul yang melemah. Senam Kegel membantu, dan dokter bisa menilai bila mengganggu."},
+  {g:"ringan", id:"pekat", t:"Urine pekat setelah kurang minum", l:"green", w:"Biasanya tanda kurang cairan. Tambah minum dan lihat apakah warna kembali kuning muda dalam sehari."}
+];
+
+var selected = {};
+
+function render(){
+  ["bak","nyeri","repro","ringan"].forEach(function(g){
+    var el = document.getElementById("g-"+g);
+    el.innerHTML = "";
+    ITEMS.filter(function(i){return i.g===g}).forEach(function(i){
+      var b = document.createElement("button");
+      b.className = "chip"; b.type = "button"; b.textContent = i.t;
+      b.setAttribute("aria-pressed", selected[i.id] ? "true" : "false");
+      b.onclick = function(){ selected[i.id] = !selected[i.id]; render(); };
+      el.appendChild(b);
+    });
+  });
+  var chosen = ITEMS.filter(function(i){return selected[i.id]});
+  var out = document.getElementById("out");
+  if(!chosen.length){
+    out.innerHTML = '<p class="empty">Belum ada keluhan yang dipilih. Pilih satu atau lebih di atas untuk melihat sarannya.</p>';
+    return;
+  }
+  var top = chosen.reduce(function(a,i){return LEVELS[i.l].rank > LEVELS[a].rank ? i.l : a}, "green");
+  var L = LEVELS[top];
+  var list = chosen.slice().sort(function(a,b){return LEVELS[b.l].rank - LEVELS[a.l].rank});
+  var html = '<section class="result '+top+'"><h3>'+L.title+'</h3><p>'+L.text+'</p><ul class="why">';
+  list.forEach(function(i){ html += '<li><b>'+i.t+'</b><span>'+i.w+'</span></li>'; });
+  html += '</ul><button class="reset" type="button" id="rs">Hapus semua pilihan</button></section>';
+  out.innerHTML = html;
+  document.getElementById("rs").onclick = function(){ selected = {}; render(); };
+}
+
+var $=function(id){return document.getElementById(id)};
+function store(k,v){try{if(v===undefined){return JSON.parse(localStorage.getItem(k))}localStorage.setItem(k,JSON.stringify(v))}catch(e){return null}}
+function today(){var d=new Date();return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2)}
+
+var TABS=[["dokter","Kapan ke dokter"],["ipss","Cek prostat"],["harian","Buku harian"],["air","Minum air"],["belajar","Pelajari"]];
+function show(id){
+  TABS.forEach(function(t){$("p-"+t[0]).classList.toggle("on",t[0]===id)});
+  var n=$("tabs");n.innerHTML="";
+  TABS.forEach(function(t){var b=document.createElement("button");b.className="tab";b.type="button";b.textContent=t[1];b.setAttribute("aria-selected",t[0]===id?"true":"false");b.onclick=function(){show(t[0])};n.appendChild(b)});
+}
+
+/* IPSS */
+var IQ=["Rasa tidak tuntas setelah BAK","Harus BAK lagi kurang dari 2 jam setelah BAK sebelumnya","Aliran urine terputus-putus","Sulit menahan keinginan BAK","Pancaran urine lemah","Harus mengejan untuk memulai BAK","Berapa kali bangun malam untuk BAK"];
+var IA=["Tidak pernah","Kurang dari 1 dari 5 kali","Kurang dari separuh","Sekitar separuh","Lebih dari separuh","Hampir selalu"];
+var IN=["0 kali","1 kali","2 kali","3 kali","4 kali","5 kali atau lebih"];
+var IQOL=["Sangat senang","Senang","Cukup puas","Campur aduk","Kurang puas","Tidak bahagia","Buruk sekali"];
+function opts(list){return list.map(function(t,i){return '<option value="'+i+'">'+i+' - '+t+'</option>'}).join("")}
+function buildIpss(){
+  var h="";
+  IQ.forEach(function(q,i){h+='<label for="iq'+i+'">'+(i+1)+". "+q+'</label><select id="iq'+i+'">'+opts(i===6?IN:IA)+'</select>'});
+  h+='<label for="iqol">Jika kondisi BAK-mu begini seterusnya, bagaimana perasaanmu?</label><select id="iqol">'+opts(IQOL)+'</select>';
+  $("ipss-q").innerHTML=h;
+  $("ipss-go").onclick=function(){
+    var s=0;IQ.forEach(function(q,i){s+=+$("iq"+i).value});
+    var ql=+$("iqol").value;
+    var c=s<=7?"green":"amber";
+    var t=s<=7?"Gejala ringan":(s<=19?"Gejala sedang":"Gejala berat");
+    var x=s<=7?"Gejalamu tergolong ringan. Jaga minum, kurangi kafein dan alkohol di malam hari, lalu ulangi cek ini bila keluhan bertambah.":(s<=19?"Sebaiknya periksakan ke dokter atau dokter spesialis urologi dalam beberapa minggu untuk mencari penyebabnya dan menentukan terapi.":"Sebaiknya segera buat janji dengan dokter atau dokter spesialis urologi dalam waktu dekat. Jika kamu tidak bisa BAK sama sekali, langsung ke IGD.");
+    if(ql>=4&&s<=7)x+=" Karena kamu merasa terganggu, tetap boleh berkonsultasi walau skornya rendah.";
+    $("ipss-out").innerHTML='<section class="result '+c+'"><p class="big">'+s+' dari 35</p><h3>'+t+'</h3><p>'+x+'</p><p>Skor 0 sampai 7 ringan, 8 sampai 19 sedang, 20 sampai 35 berat. Keluhan serupa bisa juga disebabkan infeksi, gula darah tinggi, atau obat tertentu, jadi skor ini bukan diagnosis.</p></section>';
+  };
+}
+
+/* Buku harian */
+function loadD(){return store("diary")||[]}
+function bars(list,key,title,unit){
+  var mx=Math.max.apply(null,list.map(function(e){return e[key]}).concat([1]));
+  var h='<b>'+title+'</b><div class="bars">';
+  list.forEach(function(e){h+='<div class="bar">'+e[key]+'<i style="height:'+Math.round(e[key]/mx*80)+'%"></i></div>'});
+  h+='</div><div class="bars" style="height:auto;margin:0">';
+  list.forEach(function(e){h+='<div class="bar" style="height:auto">'+e.d.slice(8)+'/'+e.d.slice(5,7)+'</div>'});
+  return h+'</div>';
+}
+function renderD(){
+  var all=loadD(),last=all.slice(-7);
+  $("d-chart").innerHTML=last.length?bars(last,"bak","Jumlah BAK per hari")+'<div style="height:14px"></div>'+bars(last,"ml","Minum per hari (ml)"):"Belum ada catatan. Simpan catatan pertamamu di atas.";
+  var lg=$("d-log");lg.innerHTML="";
+  if(!all.length){lg.textContent="Riwayat akan muncul di sini.";return}
+  all.slice().reverse().slice(0,14).forEach(function(e){
+    var r=document.createElement("div");r.className="logrow";
+    var s=document.createElement("span");s.textContent=e.d+": minum "+e.ml+" ml, BAK "+e.bak+" kali"+(e.n?". "+e.n:"");
+    var b=document.createElement("button");b.type="button";b.textContent="Hapus";
+    b.onclick=function(){store("diary",loadD().filter(function(x){return x.d!==e.d}));renderD()};
+    r.appendChild(s);r.appendChild(b);lg.appendChild(r);
+  });
+}
+function initD(){
+  $("d-save").onclick=function(){
+    var ml=$("d-minum").value,bak=$("d-bak").value;
+    if(ml===""||bak===""){$("d-msg").textContent="Isi jumlah minum dan jumlah BAK dulu.";return}
+    var all=loadD().filter(function(x){return x.d!==today()});
+    all.push({d:today(),ml:+ml,bak:+bak,n:$("d-note").value.slice(0,120)});
+    all.sort(function(a,b){return a.d<b.d?-1:1});
+    store("diary",all);
+    $("d-msg").textContent="Tersimpan untuk hari ini.";
+    $("d-minum").value="";$("d-bak").value="";$("d-note").value="";
+    renderD();
+  };
+  renderD();
+}
+
+/* Minum air */
+var W=store("water")||{d:today(),ml:0,t:2000},timer=null;
+if(W.d!==today()){W.d=today();W.ml=0}
+function renderW(){
+  store("water",W);
+  $("w-num").textContent=W.ml+" ml";
+  var p=Math.min(100,Math.round(W.ml/W.t*100));
+  $("w-bar").style.width=p+"%";
+  $("w-txt").textContent=W.ml>=W.t?"Target hari ini tercapai.":"Sisa "+(W.t-W.ml)+" ml lagi untuk mencapai target "+W.t+" ml.";
+  $("w-target").value=W.t;
+}
+function initW(){
+  $("w-add").onclick=function(){W.ml+=250;$("w-banner").innerHTML="";renderW()};
+  $("w-sub").onclick=function(){W.ml=Math.max(0,W.ml-250);renderW()};
+  $("w-target").onchange=function(){var v=+this.value;if(v>=500){W.t=v;renderW()}};
+  $("w-int").onchange=function(){
+    clearInterval(timer);var m=+this.value;
+    if(m>0)timer=setInterval(function(){$("w-banner").innerHTML='<div class="banner" role="alert">Saatnya minum segelas air.</div>'},m*60000);
+  };
+  renderW();
+}
+
+/* Pelajari */
+var EDU=[
+["Infeksi saluran kemih (ISK)","Terjadi saat kuman, paling sering bakteri dari usus, masuk dan berkembang di saluran kemih. Gejalanya perih saat BAK, sering BAK sedikit-sedikit, dan perut bawah tidak nyaman. Wanita lebih sering terkena karena salurannya lebih pendek. Pencegahan: cukup minum, jangan terlalu sering menahan BAK, dan BAK setelah berhubungan seksual. ISK perlu diperiksa dan diobati sesuai hasil pemeriksaan dokter."],
+["Batu saluran kemih","Endapan mineral yang mengeras di ginjal atau saluran kemih. Batu kecil bisa keluar sendiri, tetapi batu yang menyumbat menimbulkan nyeri pinggang hebat yang datang bergelombang, kadang disertai mual dan kencing berdarah. Faktor utamanya kurang minum. Minum cukup sehingga urine berwarna kuning muda adalah langkah pencegahan paling penting."],
+["Pembesaran prostat jinak (BPH)","Prostat membesar seiring usia dan dapat menekan saluran kencing. Gejalanya pancaran lemah, tidak tuntas, sering BAK, dan bangun malam untuk BAK. BPH bukan kanker, namun gejalanya bisa mirip masalah lain sehingga perlu dinilai dokter. Terapinya bisa berupa pemantauan, obat, atau tindakan."],
+["Inkontinensia urine (mengompol)","Urine keluar tanpa disengaja. Ada yang keluar saat batuk atau bersin, ada juga yang tiba-tiba terdesak tak tertahankan. Latihan otot dasar panggul (Kegel), mengatur minum, dan mengurangi kafein sering membantu. Konsultasikan bila mengganggu aktivitas."],
+["Kebiasaan sehari-hari yang menjaga saluran kemih","Minum cukup air, jangan menahan BAK terlalu lama, jaga kebersihan area kemaluan, kurangi kafein dan alkohol, jaga berat badan, dan jangan menunda periksa bila ada darah dalam urine."]
+];
+var MYTH=[
+["Menahan BAK itu tidak masalah","Fakta: sesekali tidak berbahaya, tetapi sering menahan BAK dapat meningkatkan risiko ISK dan membuat kandung kemih terlalu meregang."],
+["Jus cranberry mengobati ISK","Fakta: bukti menunjukkan cranberry mungkin membantu mencegah ISK berulang pada sebagian orang, tetapi tidak mengobati infeksi yang sedang berlangsung."],
+["ISK hanya terjadi pada wanita","Fakta: ISK lebih sering pada wanita, tetapi pria juga bisa terkena, dan pada pria biasanya perlu dicari penyebab yang mendasarinya."],
+["Pembesaran prostat berarti kanker","Fakta: pembesaran prostat jinak sangat umum dan bukan kanker. Namun gejalanya bisa mirip, jadi tetap perlu diperiksa."],
+["Kencing berbusa pasti tanda sakit ginjal","Fakta: busa bisa muncul karena pancaran kuat atau urine pekat. Jika busa banyak dan terus-menerus, atau disertai bengkak, periksa urine ke dokter."],
+["Batu ginjal berarti harus berhenti makan makanan berkalsium","Fakta: membatasi kalsium dari makanan tidak selalu dianjurkan dan bisa malah merugikan. Tanyakan ke dokter pola makan yang tepat untuk jenis batumu."]
+];
+function acc(id,list){
+  var n=$(id);
+  list.forEach(function(e){var d=document.createElement("details"),s=document.createElement("summary"),p=document.createElement("p");s.textContent=e[0];p.textContent=e[1];d.appendChild(s);d.appendChild(p);n.appendChild(d)});
+}
+
+show("dokter");buildIpss();initD();initW();acc("edu",EDU);acc("myth",MYTH);
+render();
+</script>
+</body>
+</html>
